@@ -25,43 +25,74 @@ header h1 {
     margin-bottom: 20px;
 }
 
-/* Timeline section */
-section {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Timelines Container */
+.timelines-container {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%; /* leaves ~10% margin on each side */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Timeline sections */
+.timeline {
+    width: 35%;
+    height: auto; /* allow content to grow and page to scroll */
+    overflow: visible;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
-    justify-content: center;
+    position: relative;
+}
+
+.timeline-title {
+    position: sticky;
+    top: 0;
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    z-index: 1;
+}
+
+/* World Timeline specific */
+.world-timeline .card {
+    border-left: 4px solid #4CAF50; /* Green for world events */
+}
+
+/* Intel Timeline specific */
+.intel-timeline .card {
+    border-left: 4px solid #0071c5; /* Intel blue */
 }
 
 /* Card styles */
-section > div {
+.card {
     background-color: white;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    min-width: 280px;
     transition: transform 0.3s ease;
 }
 
-section > div:hover {
+.card:hover {
     transform: translateY(-5px);
 }
 
 /* Card content styles */
-section h2 {
+.card h2 {
     color: #0071c5;
     font-size: 2em;
     margin: 0 0 10px 0;
 }
 
-section h3 {
+.card h3 {
     color: #333;
     margin: 0 0 15px 0;
 }
 
-section p {
+.card p {
     color: #666;
     line-height: 1.5;
     margin: 0;
@@ -73,4 +104,34 @@ body > p {
     color: #666;
     margin-top: 30px;
     font-style: italic;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .timelines-container {
+        flex-direction: column;
+    }
+
+    .timeline {
+        height: auto;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 20px 0;
+    }
+
+    .timeline-title {
+        position: static;
+        margin-bottom: 15px;
+    }
+
+    .timeline > div {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .card {
+        flex: 0 0 280px;
+    }
 }
